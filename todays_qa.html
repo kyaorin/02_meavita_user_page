@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>１日１問人生を変える365の質問</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>今日の問い</h1>
+    </header>
+
+    <main>
+
+        </div>
+        <div class="button_row_1">
+            <img id="word" src="img/word_top.png" alt="人生に影響を与えた本と名言集">
+            <img id="QA" src="img/QA_top.png" alt="１日１問">
+            <div class="memo_wrapper">
+                <input class="calender" type="date" id="calender">
+                <input type="text" id="input" placeholder="ex. 今日の問い、今抱えているモヤモヤ etc">
+                <textarea id="text_area"
+                    placeholder="ex. 今日の問いに対する自分なりの答え、今抱えている悩み、感じていることなどを思いつくまま、自由に記入してみよう。"></textarea>
+                <div class="memo_btn_wrapper">
+                    <button id="save">Save</button>
+                    <button id="clear">Clea</button>
+                </div>
+            </div>
+        </div>
+        <div class="button_row_2">
+            <img id="lifeplan" src="img/career_top.png" alt="キャリアの棚卸ワーク">
+            <img id="lifeplan" src="img/bemyself_top.png" alt="自分らしさ図解ワーク">
+            <img id="lifeplan" src="img/lifeplan_top.png" alt="ライフプラン表">
+        </div>
+
+    </main>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+
+        $("#save").on("click", function () {
+            const when = $("#calender").val();
+            const input = $("#input").val();
+            const text = $("#text_area").val();
+            const data = {
+                when: when,
+                title: input,
+                text: text,
+            };
+            console.log(data);
+            const json = JSON.stringify(data);
+            console.log(json);
+            localStorage.setItem("memo", json);
+        });
+
+        $("#clear").on("click", function () {
+            localStorage.removeItem("memo");
+            $("#input").val("");
+            $("#text_area").val("");
+        });
+
+        if (localStorage.getItem("memo")) {
+            const json = localStorage.getItem("memo");
+            console.log(json);
+            const data = JSON.parse(json);
+            console.log(data);
+            $("#input").val(data.title);
+            $("#text_area").val(data.text);
+        }
+
+
+    </script>
+
+</body>
+
+</html>
