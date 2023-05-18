@@ -485,28 +485,11 @@
         //ここまでは完了！頑張った！残りはここ！
 
 
-        //week（振返）ボタンを押すと、Localに保存されていたweeklistのデータが引き出されて
-        //１週間の振返りリストに反映される
+        //week（振返）ボタンを押すと、１週間の振返りリストが開く
 
         $("#week").on("click", function () {
-            const json = localStorage.getItem("weeklist");
-            console.log(json);
-            const data = JSON.parse(json);
-            console.log(data);
+            window.open("http://127.0.0.1:5500/review.html", "_blank");
         });
-
-
-        if (localStorage.getItem("mon")) {
-            const json = localStorage.getItem("mon");
-            console.log(json);
-            const data = JSON.parse(json);
-            console.log(data);
-            $("#calender").val(data.when);
-            $("#input").val(data.title);
-            $("#text_area").val(data.text);
-        }
-
-
 
 
     </script>

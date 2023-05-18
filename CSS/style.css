@@ -327,6 +327,11 @@ h3 {
     color: #52b4b9;
 }
 
+.weekly_term {
+    display: flex;
+    justify-content: center;
+}
+
 .review_row1,
 .review_row2,
 .review_row3,
@@ -345,14 +350,27 @@ h3 {
     margin: 0 0 10px;
 }
 
-.review_wrapper p {
+.record {
+    border-style: solid;
+    border-width: 0.5px;
+}
+
+.reviwe_qa {
     text-align: center;
     margin: 0 0 3px;
 }
 
+.text {
+    height: 26px;
+}
+
+.textarea {
+    height: 208px;
+}
+
 .review_text {
     width: 320px;
-    height: 262px;
+    height: 234px;
 }
 
 .memo_btn_wrapper button {
