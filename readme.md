@@ -26,4 +26,5 @@
 
 ## 参考にした web サイトなど
 
-  - 後で見返せるように
+  - 【jQuery】意外と簡単に作れる！モーダルウィンドウの実装方法
+  https://zero-plus.io/media/jquery-modal/

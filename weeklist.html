@@ -39,6 +39,7 @@
             </div>
         </div>
 
+
     </main>
 
     <script>
@@ -173,33 +174,38 @@
         });
 
 
-        //week（振返）ボタンを押すと、Localに保存されていたweeklistのデータが引き出されて
-        //１週間の振返りリストに反映される
-
-        $("#week").on("click", function () {
-            console.log(weeklist);
-            const json = JSON.stringify(weeklist);
-            console.log(json);
-            localStorage.setItem("weeklist", json);
-        });
-
-        if (localStorage.getItem("mon")) {
-            const json = localStorage.getItem("mon");
-            console.log(json);
-            const data = JSON.parse(json);
-            console.log(data);
-            $("#calender").val(data.when);
-            $("#input").val(data.title);
-            $("#text_area").val(data.text);
-        }
-
-
-        //next（翌週へ）ボタンをクリックすると、ローカルのデータが空になる
-        $("#week").on("click", function () {
+        //next（翌週へ）ボタンをクリックすると、ローカルのデータ＆入力データともに消える
+        $("#next").on("click", function () {
             localStorage.removeItem("weeklist");
             $("#calender").val("");
             $("#input").val("");
             $("#text_area").val("");
+        });
+
+        //ここまでは完了！頑張った！残りはここ！
+
+
+        //week（振返）ボタンを押すと、Localに保存されていたweeklistのデータが引き出されて
+        //１週間の振返りリストに反映される
+
+        $("#week").on("click", function () {
+            // localStorageからweeklistを取得し、JSON形式からJavaScriptオブジェクトに変換
+            const json = localStorage.getItem("weeklist");
+            console.log(json);
+            const review_weeklist = JSON.parse(json);
+            console.log(review_weeklist);
+
+            const pull_mondata = review_weeklist[0]; // weeklistの[0]の要素を取得
+            const pull_tuedata = review_weeklist[1]; // weeklistの[1]の要素を取得
+            const pull_weddata = review_weeklist[2]; // weeklistの[2]の要素を取得
+            const pull_thrdata = review_weeklist[3]; // weeklistの[3]の要素を取得
+            const pull_fridata = review_weeklist[4]; // weeklistの[4]の要素を取得
+            const pull_satdata = review_weeklist[5]; // weeklistの[5]の要素を取得
+            const pull_sundata = review_weeklist[6]; // weeklistの[6]の要素を取得
+
+            $("#mon_date").data(pull_mondata.when); // "#mon_date"にpull_mondataのwhenを表示
+            $("#mon_text").text(pull_mondata.title); // "#mon_text"にpull_mondataのtitleを表示
+            $("#montext_area").text(pull_mondata.text); // "#montext_area"にpull_mondataのtextを表示
         });
 
 

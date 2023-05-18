@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/sanitize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>ミアビータ会員専用ページ</title>
+</head>
+
+<body>
+
+    <main>
+        <div class="review_wrapper" id="review_wrapper">
+            <h2 class="review_title">今週の振返り</h2>
+            <div class="review_row1">
+                <div class="review">
+                    <h3>Monday</h3>
+                    <input class="mon_date" type="date" id="mon_date">
+                    <input type="mon_text" id="mon_text">
+                    <textarea id="montext_area" cols="30"></textarea>
+                </div>
+                <div class="review">
+                    <h3>Tuesday</h3>
+                    <input class="tue_date" type="date" id="tue_date">
+                    <input type="tue_text" id="tue_text">
+                    <textarea id="tuetext_area" cols="30"></textarea>
+                </div>
+                <div class="review">
+                    <h3>Wednesday</h3>
+                    <input class="wed_date" type="date" id="wed_date">
+                    <input type="wed_text" id="wed_text">
+                    <textarea id="wedtext_area" cols="30"></textarea>
+                </div>
+            </div>
+            <div class="review_row2">
+                <div class="review">
+                    <h3>Thursday</h3>
+                    <input class="thr_date" type="date" id="thr_date">
+                    <input type="thr_text" id="thr_text">
+                    <textarea id="thrtext_area" cols="30"></textarea>
+                </div>
+                <div class="review">
+                    <h3>Friday</h3>
+                    <input class="fri_date" type="date" id="fri_date">
+                    <input type="fri_text" id="fri_text">
+                    <textarea id="fritext_area" cols="30"></textarea>
+                </div>
+                <div class="review">
+                    <h3>Saturaday</h3>
+                    <input class="sat_date" type="date" id="sat_date">
+                    <input type="sat_text" id="sat_text">
+                    <textarea id="sattext_area" cols="30"></textarea>
+                </div>
+            </div>
+            <div class="review_row3">
+                <div class="review">
+                    <h3>Sunday</h3>
+                    <input class="sun_date" type="date" id="sun_date">
+                    <input type="sun_text" id="sun_text">
+                    <textarea id="suntext_area" cols="30"></textarea>
+                </div>
+                <div class="review">
+                    <p>Q.どんな変化や気付きがありましたか？</p>
+                    <textarea class="review_text" cols="30"></textarea>
+                </div>
+                <div class="review">
+                    <p>Q.できたこと、できなかったことは？</p>
+                    <textarea class="review_text" cols="30"></textarea>
+                </div>
+            </div>
+
+
+            <div class="review_row4">
+                <div class="review">
+                    <p>Q.改善できそうなことはりますか？</p>
+                    <textarea class="review_text" cols="30"></textarea>
+                </div>
+                <div class="review">
+                    <p>Q.何か手放せそうなものはありますか？</p>
+                    <textarea class="review_text" cols="30"></textarea>
+                </div>
+                <div class="review">
+                    <p>Q.来週はどんな１週間にしたいですか？</p>
+                    <textarea class="review_text" cols="30"></textarea>
+                </div>
+            </div>
+            <button class="dl_btn">ダウンロード</button>
+        </div>
+
+    </main>
+
+
+    <script>
+
+        /////振返りシートをダンロードする/////
+        $(document).ready(function () {
+            $(".dl_btn").click(function () {
+                const reviewWrapperContent = $("#review_wrapper").html();
+                downloadFile(reviewWrapperContent, "review_wrapper.html");
+            });
+
+            function downloadFile(content, fileName) {
+                const link = document.createElement("a");
+                link.href = "data:text/html;charset=utf-8," + encodeURIComponent(content);
+                link.download = fileName;
+                link.style.display = "none";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        });
+
+
+
+    </script>
+
+</body>

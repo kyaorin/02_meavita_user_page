@@ -98,7 +98,9 @@
                         <button id="sat">土</button>
                         <button id="sun">日</button>
                         <button id="clear">消</button>
-                        <button id="week">振返</button>
+                        <a href="http://127.0.0.1:5500/review.html" target="_blank">
+                            <button id="week">振返</button>
+                        </a>
                         <button id="next">翌週</button>
                     </div>
                 </div>
@@ -466,22 +468,33 @@
 
         //クリアボタンを押すと、ローカルデータは残したまま、入力エリアのデータが消える
         $("#clear").on("click", function () {
-            //localStorage.removeItem("mon");
+            //localStorage.removeItem("mon"); ローカルデータは残す
             $("#calender").val("");
             $("#input").val("");
             $("#text_area").val("");
         });
+
+        //next（翌週へ）ボタンをクリックすると、ローカルのデータ＆入力データともに消える
+        $("#next").on("click", function () {
+            localStorage.removeItem("weeklist");
+            $("#calender").val("");
+            $("#input").val("");
+            $("#text_area").val("");
+        });
+
+        //ここまでは完了！頑張った！残りはここ！
 
 
         //week（振返）ボタンを押すと、Localに保存されていたweeklistのデータが引き出されて
         //１週間の振返りリストに反映される
 
         $("#week").on("click", function () {
-            console.log(weeklist);
-            const json = JSON.stringify(weeklist);
+            const json = localStorage.getItem("weeklist");
             console.log(json);
-            localStorage.setItem("weeklist", json);
+            const data = JSON.parse(json);
+            console.log(data);
         });
+
 
         if (localStorage.getItem("mon")) {
             const json = localStorage.getItem("mon");
@@ -494,13 +507,7 @@
         }
 
 
-        //next（翌週へ）ボタンをクリックすると、ローカルのデータが空になる
-        $("#week").on("click", function () {
-            localStorage.removeItem("weeklist");
-            $("#calender").val("");
-            $("#input").val("");
-            $("#text_area").val("");
-        });
+
 
     </script>
 
